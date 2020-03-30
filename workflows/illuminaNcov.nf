@@ -8,6 +8,7 @@ include {articDownloadScheme } from '../modules/artic.nf'
 include {makeIvarBedfile} from '../modules/illumina.nf' 
 include {cramToFastq} from '../modules/illumina.nf'
 include {readTrimming} from '../modules/illumina.nf' 
+include {indexReference} from '../modules/illumina.nf'
 include {readMapping} from '../modules/illumina.nf' 
 include {trimPrimerSequences} from '../modules/illumina.nf' 
 include {callVariants} from '../modules/illumina.nf'
@@ -27,20 +28,31 @@ workflow sequenceAnalysis {
       ch_filePairs
 
     main:
-      if (params.schemeRepoURL =~ /^http/) {
-        articDownloadScheme()
-        makeIvarBedfile(articDownloadScheme.out.scheme)
-        readTrimming(ch_filePairs)
-        readMapping(articDownloadScheme.out.scheme.combine(readTrimming.out))
-      } else {
-        localRef = Channel.fromPath("${params.schemeRepoURL}/**/${params.schemeVersion}/*.reference.fasta")
-        makeIvarBedfile(localRef)
-        readTrimming(ch_filePairs)
-        localScheme = Channel.fromPath($params.schemeRepoURL)
-        readMapping(localScheme.combine(readTrimming.out))
-      }
+      readTrimming(ch_filePairs)
 
-      trimPrimerSequences(makeIvarBedfile.out.combine(readMapping.out))
+      if (params.ivarBed != "" && params.alignerRefPrefix != "") {
+        ivarBed = Channel.fromPath(params.ivarBed)
+        ref = Channel.fromPath(params.alignerRefPrefix)
+        index = Channel.fromPath("${params.alignerRefPrefix}.*")
+
+        readMapping(ref.combine(index.collect()).combine(readTrimming.out))
+
+        trimPrimerSequences(ivarBed.combine(readMapping.out))
+      } else {
+        if (params.schemeRepoURL =~ /^http/) {
+          articDownloadScheme()
+          makeIvarBedfile(articDownloadScheme.out)
+          indexReference(articDownloadScheme.out)
+        } else {
+          localScheme = Channel.fromPath(params.schemeRepoURL)
+          makeIvarBedfile(localScheme)
+          indexReference(localScheme)
+        }
+ 
+        readMapping(indexReference.out.combine(readTrimming.out))
+
+        trimPrimerSequences(makeIvarBedfile.out.combine(readMapping.out))
+      }
 
       callVariants(trimPrimerSequences.out.ptrim.combine(articDownloadScheme.out.reffasta))
 
