@@ -30,9 +30,18 @@ workflow sequenceAnalysis {
     main:
       readTrimming(ch_filePairs)
 
+      ref = Channel.fromPath("var")
+      if (params.alignerRefPrefix) {
+        ref = Channel.fromPath(params.alignerRefPrefix)
+      } else if (params.schemeRepoURL =~ /^http/) {
+        articDownloadScheme()
+        ref = articDownloadScheme.out.reffasta
+      } else {
+        ref = Channel.fromPath("${params.schemeRepoURL}/**/${params.schemeVersion}/*.reference.fasta")
+      }
+
       if (params.ivarBed != "" && params.alignerRefPrefix != "") {
         ivarBed = Channel.fromPath(params.ivarBed)
-        ref = Channel.fromPath(params.alignerRefPrefix)
         index = Channel.fromPath("${params.alignerRefPrefix}.*")
 
         readMapping(ref.combine(index.collect()).combine(readTrimming.out))
@@ -40,26 +49,25 @@ workflow sequenceAnalysis {
         trimPrimerSequences(ivarBed.combine(readMapping.out))
       } else {
         if (params.schemeRepoURL =~ /^http/) {
-          articDownloadScheme()
-          makeIvarBedfile(articDownloadScheme.out)
-          indexReference(articDownloadScheme.out)
+          makeIvarBedfile(articDownloadScheme.out.scheme)
+          indexReference(ref)
         } else {
           localScheme = Channel.fromPath(params.schemeRepoURL)
           makeIvarBedfile(localScheme)
-          indexReference(localScheme)
+          indexReference(ref)
         }
- 
+
         readMapping(indexReference.out.combine(readTrimming.out))
 
         trimPrimerSequences(makeIvarBedfile.out.combine(readMapping.out))
       }
 
-      callVariants(trimPrimerSequences.out.ptrim.combine(articDownloadScheme.out.reffasta))
+      callVariants(trimPrimerSequences.out.ptrim.combine(ref))
 
       makeConsensus(trimPrimerSequences.out.ptrim)
 
       makeQCCSV(trimPrimerSequences.out.ptrim.join(makeConsensus.out, by: 0)
-                                   .combine(articDownloadScheme.out.reffasta))
+                                   .combine(ref))
 
       makeQCCSV.out.csv.splitCsv()
                        .unique()
