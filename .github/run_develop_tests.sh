@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 
 # write log as github Action artifact
 mkdir artifacts
@@ -9,9 +10,10 @@ echo run script .github/install_nextflow_singularity.sh >> artifacts/test_artifa
 source .github/install_nextflow_singularity.sh
 
 # build singularity images
-echo run scripts/build_singularity_containers.sh >> artifacts/test_artifact.log
+apt-get install uidmap
 sed -i s'/sudo singularity build /singularity build --fakeroot /'g \
     scripts/build_singularity_containers.sh
+echo run scripts/build_singularity_containers.sh >> artifacts/test_artifact.log
 bash scripts/build_singularity_containers.sh
 
 # Run the tests
