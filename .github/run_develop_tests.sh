@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # write log to github Action artifacts
 mkdir -p artifacts
@@ -9,8 +10,7 @@ eval "$(conda shell.bash hook)"
 conda create --name nextflow
 conda activate nextflow
 conda install -c bioconda nextflow
-#NXF_VER=20.03.0-edge
-#nextflow -version >> artifacts/test_artifact.log
+NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # install Singularity 
 #sudo apt-get update && sudo apt-get install -y \
