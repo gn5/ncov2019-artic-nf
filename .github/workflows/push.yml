@@ -10,7 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Test
-      container: docker://continuumio/miniconda3:latest
       uses: skx/github-action-tester@master
       with:
         script: .github/run_develop_tests.sh
