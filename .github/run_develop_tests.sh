@@ -5,8 +5,8 @@ mkdir -p artifacts
 echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 
 # install Nextflow via Conda
-conda create --name nextflow
 eval "$(conda shell.bash hook)"
+conda create --name nextflow
 conda activate nextflow
 conda install -c bioconda nextflow
 #NXF_VER=20.03.0-edge
