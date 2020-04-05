@@ -15,9 +15,9 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
     cryptsetup
 
 # install Go compiler
+sudo rm -r /usr/local/go
 export VERSION=1.13 OS=linux ARCH=amd64
 wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
-rm -r /usr/local/go
 tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz
 rm go$VERSION.$OS-$ARCH.tar.gz
 export PATH=/usr/local/go/bin:$PATH
@@ -30,4 +30,3 @@ cd singularity
 ./mconfig
 sudo make -C builddir
 sudo make -C builddir install
-cd ..
