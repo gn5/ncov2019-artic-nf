@@ -15,8 +15,8 @@ jobs:
       with:
         script: .github/run_develop_tests.sh
     - run: mkdir -p artifacts
-    - run: echo test run >> artifacts/test_artifact.txt
+    - run: echo test finished >> artifacts/test_artifact.log
     - uses: actions/upload-artifact@v1
       with:
-        name: test_artifact
-        path: artifacts/test_artifact.txt
+        name: test_artifacts
+        path: artifacts
