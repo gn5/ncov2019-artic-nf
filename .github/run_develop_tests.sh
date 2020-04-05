@@ -6,7 +6,7 @@ echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 
 # install Conda
 export PATH=/opt/conda/bin:$PATH
-sudo apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
     git mercurial subversion
 wget --quiet https://repo.anaconda.com/miniconda/Miniconda2-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh && \
