@@ -1,18 +1,19 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
 # write log to github Action artifacts
 mkdir -p artifacts
 echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 
 # install Nextflow via Conda
-eval "$(conda shell.bash hook)"
+export PATH=/opt/conda/bin:$PATH
 conda create --name nextflow
+eval "$(conda shell.bash hook)"
 conda activate nextflow
 conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
-# install Singularity 
+## install Singularity 
 #sudo apt-get update && sudo apt-get install -y \
 #    build-essential \
 #    libssl-dev \
@@ -38,7 +39,7 @@ NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 #sudo make -C builddir install
 #cd ..
 #singularity version >> artifacts/test_artifact.log 
-
+#
 # build singularity images
 #bash scripts/build_singularity_containers.sh
 
