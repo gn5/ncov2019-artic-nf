@@ -8,6 +8,10 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
+    - name: Build singularity containers
+      run: |
+        bash .github/install_singularity.sh
+	bash scripts/build_singularity_containers.sh
     - uses: actions/checkout@master
     - name: Test
       uses: skx/github-action-tester@master
