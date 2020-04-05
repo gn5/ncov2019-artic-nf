@@ -8,10 +8,10 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
+    - uses: docker://continuumio/miniconda3:latest
     - uses: actions/checkout@master
     - name: Test
       uses: skx/github-action-tester@master
-      container: continuumio/miniconda3:latest
       with:
         script: .github/run_develop_tests.sh
     - run: mkdir -p artifacts
