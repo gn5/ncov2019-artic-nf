@@ -16,14 +16,10 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda2-4.5.11-Linux-x86_64.
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-ls -ltra /opt/  >> artifacts/test_artifact.log
-ls -ltra /opt/conda/bin  >> artifacts/test_artifact.log
-
 # install Nextflow via Conda
-ls -ltra /opt/conda/bin  >> artifacts/test_artifact.log
-#conda create --name nextflow
+conda create --name nextflow
 #eval "$(conda shell.bash hook)"
-#conda activate nextflow
+conda activate nextflow
 #conda install -c bioconda nextflow
 #NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
