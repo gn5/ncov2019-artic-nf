@@ -13,6 +13,7 @@ conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # test singularity profile
+sed -i s'/sudo //'g .github/install_singularity.sh
 bash .github/install_singularity.sh
 echo run tests >> artifacts/test_artifact.log
 NXF_VER=20.03.0-edge nextflow run main.nf \
