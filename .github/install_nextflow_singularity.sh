@@ -13,6 +13,7 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda2-4.5.11-Linux-x86_64.
     echo "conda activate base" >> ~/.bashrc
 
 # install Nextflow via Conda
+conda update -n base conda
 conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
