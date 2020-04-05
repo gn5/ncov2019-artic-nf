@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eo pipefail
 
 # write log to github Action artifacts
 mkdir -p artifacts
