@@ -7,7 +7,7 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
-    container: continuumio/miniconda3:latest
+    container: docker://continuumio/miniconda3:latest
     steps:
     - uses: actions/checkout@master
     - name: Test
