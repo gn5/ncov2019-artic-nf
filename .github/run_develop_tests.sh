@@ -12,16 +12,24 @@ source .github/install_conda.sh
 conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
-# install Conda environments of the pipeline
-source .github/install_conda_envs.sh
-
-# Run the tests
+# test singularity profile
 echo run tests >> artifacts/test_artifact.log
 NXF_VER=20.03.0-edge nextflow run main.nf \
-       -profile conda \
+       -profile singularity \
        --directory /home/ubuntu/fastq \
        --illumina \
        --prefix test
+
+# test conda profile
+# install Conda environments of the pipeline
+#source .github/install_conda_envs.sh
+# Run the tests
+#echo run tests >> artifacts/test_artifact.log
+#NXF_VER=20.03.0-edge nextflow run main.nf \
+#       -profile conda \
+#       --directory /home/ubuntu/fastq \
+#       --illumina \
+#       --prefix test
 
 # Everything passed, exit cleanly.
 exit 0
