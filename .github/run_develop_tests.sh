@@ -10,7 +10,7 @@ source .github/install_nextflow_singularity.sh
 
 # build singularity images
 echo run scripts/build_singularity_containers.sh >> artifacts/test_artifact.log
-sed -i s'/sudo //'g scripts/build_singularity_containers.sh
+sed -i s'/sudo singularity build /singularity build --fakeroot/'g scripts/build_singularity_containers.sh
 bash scripts/build_singularity_containers.sh
 
 # Run the tests
