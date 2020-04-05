@@ -10,6 +10,7 @@ jobs:
     steps:
     - name: Build singularity containers
       run: |
+       ls -ltra
        bash .github/install_singularity.sh
        bash scripts/build_singularity_containers.sh
     - uses: actions/checkout@master
