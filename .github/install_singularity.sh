@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # install Singularity dependencies 
-sudo apt-get update
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     libssl-dev \
     uuid-dev \
@@ -28,5 +28,5 @@ wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singula
 tar -xzf singularity-${VERSION}.tar.gz && \
 cd singularity
 ./mconfig
-sudo make -C builddir
-sudo make -C builddir install
+make -C builddir
+make -C builddir install

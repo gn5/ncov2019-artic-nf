@@ -6,17 +6,18 @@ mkdir artifacts
 echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 
 # install Conda
-source .github/install_conda.sh
+bash .github/install_conda.sh
 
 # install Nextflow via Conda
 conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # test singularity profile
+bash .github/install_singularity.sh
 echo run tests >> artifacts/test_artifact.log
 NXF_VER=20.03.0-edge nextflow run main.nf \
        -profile singularity \
-       --directory /home/ubuntu/fastq \
+       --directory test_data/fastq \
        --illumina \
        --prefix test
 
@@ -27,7 +28,7 @@ NXF_VER=20.03.0-edge nextflow run main.nf \
 #echo run tests >> artifacts/test_artifact.log
 #NXF_VER=20.03.0-edge nextflow run main.nf \
 #       -profile conda \
-#       --directory /home/ubuntu/fastq \
+#       --directory test_data/fastq \
 #       --illumina \
 #       --prefix test
 

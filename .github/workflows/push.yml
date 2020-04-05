@@ -13,7 +13,7 @@ jobs:
       run: |
        bash .github/install_singularity.sh
        bash scripts/build_singularity_containers.sh
-    - name: tests
+    - name: Run tests
       uses: skx/github-action-tester@master
       with:
         script: .github/run_develop_tests.sh
