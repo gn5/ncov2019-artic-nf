@@ -3,6 +3,8 @@
 # write log to github Action artifacts
 mkdir -p artifacts
 echo run script run_develop_tests.sh >> artifacts/test_artifact.log
+ls -ltra /opt/  >> artifacts/test_artifact.log
+ls -ltra /opt/conda/bin  >> artifacts/test_artifact.log
 
 # install Nextflow via Conda
 export PATH=/opt/conda/bin:$PATH
