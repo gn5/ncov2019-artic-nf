@@ -9,8 +9,8 @@ echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 bash .github/install_conda.sh
 
 # install Nextflow via Conda
+export PATH=/opt/conda/bin:$PATH
 conda install -c bioconda nextflow
-NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # test singularity profile
 sed -i s'/sudo //'g .github/install_singularity.sh
