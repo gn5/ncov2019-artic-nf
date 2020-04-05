@@ -21,7 +21,7 @@ conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # install Singularity 
-sudo apt-get update && sudo apt-get install -y \
+apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
     uuid-dev \
@@ -34,7 +34,7 @@ sudo apt-get update && sudo apt-get install -y \
     cryptsetup
 export VERSION=1.13 OS=linux ARCH=amd64
 wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
-sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz
+tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz
 rm go$VERSION.$OS-$ARCH.tar.gz
 export PATH=/usr/local/go/bin:$PATH
 export VERSION=3.5.3
