@@ -7,11 +7,12 @@ echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 
 # install Nextflow via Conda
 export PATH=/opt/conda/bin:$PATH
-conda create --name nextflow
-eval "$(conda shell.bash hook)"
-conda activate nextflow
-conda install -c bioconda nextflow
-NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
+ls -ltra /opt/conda/bin  >> artifacts/test_artifact.log
+#conda create --name nextflow
+#eval "$(conda shell.bash hook)"
+#conda activate nextflow
+#conda install -c bioconda nextflow
+#NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 ## install Singularity 
 #sudo apt-get update && sudo apt-get install -y \
