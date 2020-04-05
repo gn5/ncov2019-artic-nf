@@ -21,7 +21,8 @@ conda install -c bioconda nextflow
 NXF_VER=20.03.0-edge nextflow -version >> artifacts/test_artifact.log
 
 # install Singularity 
-apt-get update && apt-get install -y \
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     libssl-dev \
     uuid-dev \
