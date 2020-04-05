@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Test
       uses: skx/github-action-tester@master
-      container: docker://continuumio/miniconda3:latest
+      container: continuumio/miniconda3:latest
       with:
         script: .github/run_develop_tests.sh
     - run: mkdir -p artifacts
