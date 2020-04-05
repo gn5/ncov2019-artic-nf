@@ -14,8 +14,6 @@ jobs:
       uses: skx/github-action-tester@master
       with:
         script: .github/run_develop_tests.sh
-    - run: mkdir -p artifacts
-    - run: echo test finished >> artifacts/test_artifact.log
     - uses: actions/upload-artifact@v1
       with:
         name: test_artifacts

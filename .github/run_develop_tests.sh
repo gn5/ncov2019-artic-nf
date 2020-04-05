@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # write log to github Action artifacts
-mkdir -p artifacts
+mkdir artifacts
 echo run script run_develop_tests.sh >> artifacts/test_artifact.log
 ls -ltra /opt/  >> artifacts/test_artifact.log
 ls -ltra /opt/conda/bin  >> artifacts/test_artifact.log
