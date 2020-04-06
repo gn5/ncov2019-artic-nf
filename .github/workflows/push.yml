@@ -9,14 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build singularity containers
+    - name: install Conda
+      run: bash scripts/install_conda.sh
+    - name: install Nextflow via Conda
+      run: |
+       export PATH=/opt/conda/bin:$PATH
+       conda install -c bioconda nextflow
+    - name: Build Singularity containers
       run: |
        bash .github/install_singularity.sh
        bash scripts/build_singularity_containers.sh
     - name: Run tests
-      uses: skx/github-action-tester@master
-      with:
-        script: .github/run_develop_tests.sh
+      run: |
+       bash .github/run_develop_tests.sh
     - uses: actions/upload-artifact@v1
       with:
         name: test_artifacts

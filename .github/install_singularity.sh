@@ -31,4 +31,5 @@ cd singularity
 sudo make -C builddir
 sudo make -C builddir install
 cd ..
-sudo rm -rf singularity*
+rm -f singularity-${VERSION}.tar.gz
+sudo rm -rf singularity
