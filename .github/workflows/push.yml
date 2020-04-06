@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name set ENV
+    - name: set ENV
       run: |
        echo "::set-env name=PATH::/usr/local/go1.13/bin:$PATH"
        echo $PATH
