@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 
 # install Conda
 export PATH=/opt/conda/bin:$PATH
