@@ -15,12 +15,17 @@ jobs:
       run: |
        export PATH=/opt/conda/bin:$PATH
        conda install -c bioconda nextflow
-    - name: Build Singularity containers
+       NXF_VER=20.03.0-edge nextflow -version
+    - name: install Singularity
       run: |
        bash .github/install_singularity.sh
+       echo $(which singularity)
+    - name: Build Singularity containers
+      run: |
        bash scripts/build_singularity_containers.sh
     - name: Run tests
       run: |
+       echo $(which singularity)
        bash .github/run_develop_tests.sh
     - uses: actions/upload-artifact@v1
       with:

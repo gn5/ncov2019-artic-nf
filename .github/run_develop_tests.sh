@@ -33,6 +33,3 @@ NXF_VER=20.03.0-edge nextflow run main.nf \
 #       --directory test_data/fastq \
 #       --illumina \
 #       --prefix test
-
-# Everything passed, exit cleanly.
-exit 0
