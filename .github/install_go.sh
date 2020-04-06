@@ -2,8 +2,7 @@
 set -eo pipefail
 
 # install Go compiler
-sudo rm -rf /usr/local/go
-sudo rm -rf /usr/local/go.*
+sudo rm -r /usr/local/go*
 ls -ltra /usr/local | grep go
 
 
