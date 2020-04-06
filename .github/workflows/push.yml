@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: install go compiler
+      run: |
+       bash .github/install_go.sh
     - name: install Singularity
       run: |
        bash .github/install_singularity.sh
