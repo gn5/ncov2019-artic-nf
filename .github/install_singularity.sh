@@ -18,7 +18,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
 # install Go compiler
 export VERSION=1.13 OS=linux ARCH=amd64
 wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
-sudo rm -r /usr/local/go
+sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz
 rm go$VERSION.$OS-$ARCH.tar.gz
 export PATH=/usr/local/go/bin:$PATH
