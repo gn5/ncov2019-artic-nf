@@ -12,15 +12,10 @@ jobs:
     - name: install Singularity
       run: |
        bash .github/install_singularity.sh
-    - name: set ENV
+    - name: Build pipeline Singularity containers
       run: |
-       export PATH=/usr/local/go1.13/bin:$PATH
-       echo $PATH
-    - name: install go compiler
-      run: |
-       export PATH=/usr/local/go1.13/bin:$PATH
-       echo $(which go)
-       go version
+       echo $(which singularity)
+       bash scripts/build_singularity_containers.sh
     - name: install Conda
       run: bash .github/install_conda.sh
     - name: install Nextflow via Conda
@@ -28,10 +23,6 @@ jobs:
        export PATH=/opt/conda/bin:$PATH
        conda install -c bioconda nextflow
        NXF_VER=20.03.0-edge nextflow -version
-    - name: Build pipeline Singularity containers
-      run: |
-       echo $(which singularity)
-       bash scripts/build_singularity_containers.sh
     - name: Run tests
       run: |
        echo $(which singularity)
