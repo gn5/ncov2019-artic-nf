@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: install Conda
-      run: bash scripts/install_conda.sh
+      run: bash .github/install_conda.sh
     - name: install Nextflow via Conda
       run: |
        export PATH=/opt/conda/bin:$PATH
