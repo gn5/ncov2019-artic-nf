@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: allenevans/set-env@v1.0.0
         with:
-          PATH: /usr/local/go1.13/bin:$PATH
+          PATH: "/usr/local/go1.13/bin:$PATH"
     - name: install go compiler
       run: |
        echo $(which go)
