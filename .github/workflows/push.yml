@@ -11,9 +11,11 @@ jobs:
     - uses: actions/checkout@master
     - name: install go compiler
       run: |
-       sudo rm -r /usr/local/go*
+       export PATH=/usr/local/go1.13/bin:$PATH
+       ls -ltra /usr/local/go1.13/
+       echo $(which go)
+       go -version
        bash .github/install_go.sh
-       ls -ltra /usr/local/
     - name: install Singularity
       run: |
        bash .github/install_singularity.sh
