@@ -20,7 +20,7 @@ jobs:
       run: |
        bash .github/install_singularity.sh
        echo $(which singularity)
-    - name: Build Singularity containers
+    - name: Build pipeline Singularity containers
       run: |
        bash scripts/build_singularity_containers.sh
     - name: Run tests
