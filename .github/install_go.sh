@@ -16,7 +16,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
     cryptsetup
 
 # install Go compiler
-sudo rm -rf /usr/local/go
+sudo rm -rf /usr/local/go*
 ls -ltra /usr/local
 
 export VERSION=1.13 OS=linux ARCH=amd64
