@@ -1,6 +1,12 @@
 #!/bin/bash
 set -eo pipefail
 
+# install Go compiler
+sudo rm -rf /usr/local/go
+sudo rm -rf /usr/local/go.*
+ls -ltra /usr/local | grep go
+
+
 # install Singularity dependencies 
 sudo apt-get update
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
@@ -14,10 +20,6 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get install -y \
     pkg-config \
     git \
     cryptsetup
-
-# install Go compiler
-sudo rm -rf /usr/local/go*
-ls -ltra /usr/local
 
 export VERSION=1.13 OS=linux ARCH=amd64
 wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
