@@ -2,7 +2,7 @@
 set -eo pipefail
 
 # check go install
-export PATH=/usr/local/go/bin:$PATH
+#export PATH=/usr/local/go/bin:$PATH
 echo $(which go)
 go version
 

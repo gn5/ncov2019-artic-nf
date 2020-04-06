@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - uses: allenevans/set-env@v1.0.0
+        with:
+          PATH: '/usr/local/go1.13/bin:$PATH'
     - name: install go compiler
       run: |
-       export PATH=/usr/local/go1.13/bin:$PATH
-       ls -ltra /usr/local/go1.13/
        echo $(which go)
-       go -version
-       bash .github/install_go.sh
+       go version
     - name: install Singularity
       run: |
        bash .github/install_singularity.sh

@@ -3,8 +3,6 @@ set -eo pipefail
 
 # install Go compiler
 sudo rm -r /usr/local/go*
-ls -ltra /usr/local | grep go
-
 
 # install Singularity dependencies 
 sudo apt-get update
