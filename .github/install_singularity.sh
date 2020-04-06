@@ -1,9 +1,10 @@
 #!/bin/bash
 set -eo pipefail
 
+# check go install
 export PATH=/usr/local/go/bin:$PATH
 echo $(which go)
-go -version
+go version
 
 # install Singularity
 export VERSION=3.5.3
@@ -14,4 +15,6 @@ cd singularity
 make -C builddir
 sudo make -C builddir install
 cd ..
+
 echo $(which singularity)
+singularity --version
