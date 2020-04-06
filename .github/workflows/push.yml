@@ -15,10 +15,12 @@ jobs:
        echo $PATH
     - name: install go compiler
       run: |
+       export PATH=/usr/local/go1.13/bin:$PATH
        echo $(which go)
        go version
     - name: install Singularity
       run: |
+       export PATH=/usr/local/go1.13/bin:$PATH
        bash .github/install_singularity.sh
     - name: install Conda
       run: bash .github/install_conda.sh
