@@ -26,5 +26,6 @@ rm go$VERSION.$OS-$ARCH.tar.gz
 echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
+export PATH=/usr/local/go/bin:$PATH
 echo $(which go)
-go -version
+go version
