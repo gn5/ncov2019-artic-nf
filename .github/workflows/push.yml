@@ -11,13 +11,13 @@ jobs:
     - uses: actions/checkout@master
     - name: install Singularity
       run: |
-       bash .github/install_singularity.sh
+       bash .github/scripts/install_singularity.sh
     - name: Build pipeline Singularity containers
       run: |
        echo $(which singularity)
        bash scripts/build_singularity_containers.sh
     - name: install Conda
-      run: bash .github/install_conda.sh
+      run: bash .github/scripts/install_conda.sh
     - name: install Nextflow via Conda
       run: |
        export PATH=/opt/conda/bin:$PATH
@@ -26,7 +26,7 @@ jobs:
     - name: Run tests
       run: |
        echo $(which singularity)
-       bash .github/run_develop_tests.sh
+       bash .github/scripts/run_develop_tests.sh
     - uses: actions/upload-artifact@v1
       with:
         name: test_artifacts
